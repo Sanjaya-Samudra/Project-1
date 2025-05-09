@@ -15,11 +15,15 @@ export class HomeComponent {
 
   featuredProducts = [
     {
+      id: 1,
       name: 'Wireless Headphones',
-      description: 'Noise-cancelling with 40-hour battery life.',
-      price: 99.99,
+      description: 'Noise-cancelling over-ear headphones with 30h battery life.',
+      price: 129.99,
+      image: 'assets/images/headphones.jpg',
       stock: 12,
-      image: 'https://via.placeholder.com/300x200.png?text=Headphones'
+      seller: 'TechStore Inc.',
+      ratings: 4.5,
+      comments: ['Great sound!', 'Very comfortable.', 'Battery lasts long.']
     },
     {
       name: 'Smart Watch',
@@ -43,5 +47,12 @@ export class HomeComponent {
       image: 'https://via.placeholder.com/300x200.png?text=Speaker'
     }
   ];
+
+  openProductDetails(product: any) {
+    const productWindow = window.open(
+      `/product-details?id=${product.id}`,
+      '_blank'
+    );
+  }
 
 }
