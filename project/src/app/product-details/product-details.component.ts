@@ -2,11 +2,13 @@ import { NgClass, NgFor } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute} from '@angular/router';
 import { FormsModule } from '@angular/forms'; 
+import { HeaderComponent } from '../common/header/header.component';
+import { FooterComponent } from '../common/footer/footer.component';
 
 @Component({
   selector: 'app-product-details',
   standalone: true,
-  imports: [NgFor, NgClass, FormsModule],
+  imports: [NgFor, NgClass, FormsModule, HeaderComponent, FooterComponent],
   templateUrl: './product-details.component.html',
   styleUrl: './product-details.component.css'
 })
