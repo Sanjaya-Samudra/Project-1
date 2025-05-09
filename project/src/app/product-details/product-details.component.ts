@@ -21,7 +21,7 @@ export class ProductDetailsComponent implements OnInit{
       name: 'Wireless Headphones',
       description: 'Noise-cancelling over-ear headphones with 30h battery life.',
       price: 129.99,
-      image: 'assets/images/headphones.jpg',
+      image: 'https://cdn.pixabay.com/photo/2018/09/17/14/27/headphones-3683983_640.jpg',
       stock: 12,
       supplier: {
         name: 'TechStore Inc.',
