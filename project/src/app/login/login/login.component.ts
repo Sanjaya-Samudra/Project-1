@@ -1,12 +1,30 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { RouterModule } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
+import { FormsModule } from '@angular/forms';
+
 
 @Component({
   standalone: true,
-  imports: [CommonModule, RouterModule],
+  imports: [CommonModule, RouterModule, FormsModule],
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })
-export class LoginComponent {}
+export class LoginComponent {
+
+  successMessage: string = '';
+
+  constructor(private router: Router) {}
+
+  onSubmit() {
+    
+    this.successMessage = 'Login Successfull! Redirecting to Home...';
+
+    // ✅ Redirect after 2 seconds
+    setTimeout(() => {
+      this.router.navigate(['/home']);  // Make sure this matches your route
+    }, 1000);
+  }
+
+}
