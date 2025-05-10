@@ -1,0 +1,22 @@
+.floating-input {
+  @apply w-full px-3 pt-7 pb-2 text-sm text-gray-800 bg-white border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition;
+}
+
+.floating-label {
+  @apply absolute left-3 top-2 text-sm text-gray-500 transition-all duration-200 bg-white px-1;
+  transform-origin: top left;
+  pointer-events: none;
+}
+
+.peer:placeholder-shown ~ .floating-label {
+  @apply top-5 text-base text-gray-400;
+}
+
+.peer:focus ~ .floating-label,
+.peer:not(:placeholder-shown) ~ .floating-label {
+  @apply top-2 text-sm text-blue-600;
+}
+
+.relative {
+  position: relative;
+}

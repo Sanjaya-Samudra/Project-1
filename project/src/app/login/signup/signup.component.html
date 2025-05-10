@@ -1,9 +1,76 @@
-<div class="flex flex-col items-center justify-center min-h-screen bg-pink-50 p-6">
-  <div class="bg-white p-8 rounded shadow-md w-full max-w-md">
-    <h2 class="text-2xl font-bold text-center mb-6">Signup</h2>
+<div class="min-h-screen flex items-center justify-center bg-gray-100 p-6">
+  <form #signupForm="ngForm" (ngSubmit)="onSubmit()" class="w-full max-w-lg bg-white p-10 rounded-2xl shadow-xl space-y-6">
+    <h2 class="text-3xl font-bold text-center text-gray-800">Create Your Account</h2>
 
-    <form>
-      <!-- Signup form fields go here -->
-    </form>
-  </div>
+    <!-- First & Last Name -->
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+      <div class="relative">
+        <input type="text" name="firstName" [(ngModel)]="user.firstName" required #firstName="ngModel"
+          [ngClass]="{ 'border-red-500': firstName.touched && firstName.invalid }"
+          class="floating-input peer" placeholder=" " />
+        <label class="floating-label">First Name</label>
+        <p *ngIf="firstName.touched && firstName.invalid" class="text-red-500 text-sm mt-1">First name is required.</p>
+      </div>
+
+      <div class="relative">
+        <input type="text" name="lastName" [(ngModel)]="user.lastName" required #lastName="ngModel"
+          [ngClass]="{ 'border-red-500': lastName.touched && lastName.invalid }"
+          class="floating-input peer" placeholder=" " />
+        <label class="floating-label">Last Name</label>
+        <p *ngIf="lastName.touched && lastName.invalid" class="text-red-500 text-sm mt-1">Last name is required.</p>
+      </div>
+    </div>
+
+    <!-- Email -->
+    <div class="relative">
+      <input type="email" name="email" [(ngModel)]="user.email" required email #email="ngModel"
+        [ngClass]="{ 'border-red-500': email.touched && email.invalid }"
+        class="floating-input peer" placeholder=" " />
+      <label class="floating-label">Email Address</label>
+      <p *ngIf="email.touched && email.invalid" class="text-red-500 text-sm mt-1">Enter a valid email address.</p>
+    </div>
+
+    <!-- Password -->
+    <div class="relative">
+      <input type="password" name="password" [(ngModel)]="user.password" required minlength="6" #password="ngModel"
+        [ngClass]="{ 'border-red-500': password.touched && password.invalid }"
+        class="floating-input peer" placeholder=" " />
+      <label class="floating-label">Password</label>
+      <p *ngIf="password.touched && password.errors?.['minlength']" class="text-red-500 text-sm mt-1">
+        Password must be at least 6 characters.
+      </p>
+    </div>
+
+    <!-- Confirm Password -->
+    <div class="relative">
+      <input type="password" name="confirmPassword" [(ngModel)]="user.confirmPassword" required minlength="6" #confirmPassword="ngModel"
+        [ngClass]="{
+          'border-red-500': confirmPassword.touched &&
+            (confirmPassword.invalid || user.password !== user.confirmPassword)
+        }"
+        class="floating-input peer" placeholder=" " />
+      <label class="floating-label">Confirm Password</label>
+      <p *ngIf="confirmPassword.touched && confirmPassword.errors?.['minlength']" class="text-red-500 text-sm mt-1">
+        Confirm password must be at least 6 characters.
+      </p>
+      <p *ngIf="confirmPassword.touched && user.password !== user.confirmPassword"
+         class="text-red-500 text-sm mt-1">Passwords do not match.</p>
+    </div>
+
+    <!-- Address
+    <div class="relative">
+      <input type="text" name="address" [(ngModel)]="user.address" required #address="ngModel"
+        [ngClass]="{ 'border-red-500': address.touched && address.invalid }"
+        class="floating-input peer" placeholder=" " />
+      <label class="floating-label">Shipping Address</label>
+      <p *ngIf="address.touched && address.invalid" class="text-red-500 text-sm mt-1">Address is required.</p>
+    </div> -->
+
+    <!-- Submit -->
+    <button type="submit"
+      [disabled]="signupForm.invalid || user.password !== user.confirmPassword"
+      class="w-full bg-blue-600 hover:bg-blue-700 active:scale-95 transition transform duration-100 text-white font-medium py-3 rounded-lg text-lg cursor-pointer">
+      Sign Up
+    </button>
+  </form>
 </div>
